@@ -12,8 +12,8 @@ let package = Package(
     targets: [
         .binaryTarget(
             name: "VerbaTranslations",
-            url: "https://github.com/IKristea/verba-ios/releases/download/1.0.0/VerbaTranslations.xcframework.zip",
-            checksum: "e403591a7c3cfac3d10ba1d0470a0805c901e133005d029198ab30f8d4c24373"
+            url: "https://github.com/IKristea/verba-ios/releases/download/1.0.1/VerbaTranslations.xcframework.zip",
+            checksum: "1a81efbb743680bf112eeb4dc662ef0d4ee64712dbf5da393fc2fd034e4c5688"
         ),
     ]
 )

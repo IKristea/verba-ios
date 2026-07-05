@@ -39,18 +39,23 @@ Live update SwiftUI (opțional): `@StateObject var verba = VerbaOtaObserver.shar
 Trimite `Localizable.strings` în Verba (creează chei noi, umple gol; **Verba câștigă** pe ce există;
 cheile șterse în Verba **nu reînvie**). Apoi cere auto-translate pentru limbile lipsă.
 
-- **Xcode**: click-dreapta pe proiect → **VerbaPush** (verba-push).
-- **CLI**: `VERBA_WRITE_TOKEN=... swift package --allow-network-connections all verba-push`
+- **Proiect Xcode** (rețeaua e blocată în plugin-urile Xcode): Run Script Build Phase, guarded, care cheamă binarul din artifacts SPM:
+  ```sh
+  [ "${VERBA_PUSH:-0}" = 1 ] || exit 0
+  TOOL="$(find "${BUILD_DIR%/Build/*}/SourcePackages/artifacts" -name verba-push -type f 2>/dev/null | head -1)"
+  cd "$SRCROOT"; "$TOOL"
+  ```
+  Declanșezi: build cu `VERBA_PUSH=1`.
+- **Package SPM / CLI**: `VERBA_WRITE_TOKEN=... swift package --allow-network-connections all verba-push`
 
-Tokenul WRITE: env `VERBA_WRITE_TOKEN` sau linia `VERBA_WRITE_TOKEN = ...` din `Verba.xcconfig`.
-Tool-ul auto-descoperă directorul cu `.lproj`; `project`+`locales` din `/manifest`.
+Tokenul WRITE: env `VERBA_WRITE_TOKEN` sau `VERBA_WRITE_TOKEN = ...` din `Verba.xcconfig`.
+Directorul `.lproj`, `project`, `locales` — din `/manifest` (setate în Verba), altfel auto-descoperire.
 
-## 3. Fetch (web→app) — plugin
+## 3. Fetch (web→app)
 
 Coboară traducerile și scrie `<locale>.lproj/Localizable.strings` (fallback offline la prima pornire).
-
-- **Xcode**: click-dreapta pe proiect → **VerbaFetch** (verba-fetch).
-- **CLI**: `VERBA_TOKEN=... swift package --allow-writing-to-package-directory --allow-network-connections all verba-fetch`
+La fel ca push: **Xcode** = Build Phase cu `verba-fetch` (guarded `VERBA_FETCH=1`); **SPM/CLI** =
+`VERBA_TOKEN=... swift package --allow-writing-to-package-directory --allow-network-connections all verba-fetch`.
 
 Tokenul READ: env `VERBA_TOKEN` sau `VERBA_READ_TOKEN`/`VERBA_TOKEN` din `Verba.xcconfig`.
 

@@ -20,19 +20,19 @@ let package = Package(
         // runtime OTA (iOS)
         .binaryTarget(
             name: "VerbaTranslations",
-            url: "https://github.com/IKristea/verba-ios/releases/download/1.2.0/VerbaTranslations.xcframework.zip",
+            url: "https://github.com/IKristea/verba-ios/releases/download/1.2.1/VerbaTranslations.xcframework.zip",
             checksum: "7aaf775c91a9a641fb630c413d77fd88eea2c98c6321c0185fec7a3815fd11f5"
         ),
         // CLI-uri (macOS host tools) — rulate de plugin-uri
         .binaryTarget(
             name: "verba-push",
-            url: "https://github.com/IKristea/verba-ios/releases/download/1.2.0/verba-push.artifactbundle.zip",
+            url: "https://github.com/IKristea/verba-ios/releases/download/1.2.1/verba-push.artifactbundle.zip",
             checksum: "e907b2b7fd0e5cf22646c8e23cdb4f228f52c5e1c212ca570147964115835f4e"
         ),
         .binaryTarget(
             name: "verba-fetch",
-            url: "https://github.com/IKristea/verba-ios/releases/download/1.2.0/verba-fetch.artifactbundle.zip",
-            checksum: "7598bac413fe763b4d08b6298fece196966362bcafac54bfc2051e17c3002f46"
+            url: "https://github.com/IKristea/verba-ios/releases/download/1.2.1/verba-fetch.artifactbundle.zip",
+            checksum: "7cf11436ee1bf29790821670d0342dc541db903c74a061ed21082a8bf371f9c6"
         ),
         // push (app→web): cheia WRITE din env VERBA_WRITE_TOKEN sau Verba.xcconfig
         .plugin(
